@@ -45,7 +45,7 @@ class DataIOStreamTest {
     @Test
     @SneakyThrows
     @DisplayName("Write data to file through buffer")
-    void test() {
+    void testWriteDataToFileThroughBuffer() {
         try (DataOutputStream out = new DataOutputStream(
                 new BufferedOutputStream(new FileOutputStream(file)))) {
 
@@ -57,6 +57,20 @@ class DataIOStreamTest {
             out.flush();
 
             assertTrue(file.length() > 0);
+        }
+    }
+
+    @Test
+    @SneakyThrows
+    @DisplayName("Write data to buffer without flushing")
+    void testWriteDataToBufferWithoutFlushing() {
+        try (DataOutputStream out = new DataOutputStream(
+                new BufferedOutputStream(new FileOutputStream(file)))) {
+
+            out.writeInt(1);
+            out.writeLong(3L);
+
+            assertTrue(file.length() == 0);
         }
     }
 }
