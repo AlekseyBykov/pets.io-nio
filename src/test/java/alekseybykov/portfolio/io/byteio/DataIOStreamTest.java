@@ -10,14 +10,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.BufferedOutputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author  aleksey.n.bykov@gmail.com
@@ -72,5 +69,34 @@ class DataIOStreamTest {
 
             assertTrue(file.length() == 0);
         }
+    }
+
+    @Test
+    @SneakyThrows
+    @DisplayName("Write data to file and then read it from there")
+    void testWriteReadDataUsingFile() {
+        try (DataOutputStream out = new DataOutputStream(
+                new BufferedOutputStream(new FileOutputStream(file)));
+             DataInputStream in = new DataInputStream
+                (new BufferedInputStream(new FileInputStream(file)))) {
+
+            out.writeInt(-1);
+            out.writeBoolean(false);
+            out.writeShort(20);
+            out.writeLong(11L);
+            out.writeFloat(1.1f);
+            out.writeUTF("some utf string");
+            out.flush();
+
+            assertTrue(file.length() > 0);
+
+            assertEquals(-1, in.readInt());
+            assertFalse(in.readBoolean());
+            assertEquals(20, in.readShort());
+            assertEquals(11L, in.readLong());
+            assertEquals(1.1f, in.readFloat());
+            assertEquals("some utf string", in.readUTF());
+
+        } // will close all the streams
     }
 }
