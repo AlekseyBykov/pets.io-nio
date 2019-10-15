@@ -7,10 +7,7 @@ import lombok.SneakyThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -39,13 +36,41 @@ class FileIOStreamTest extends ByteIOTestBase {
             os.flush();
             assertTrue(is.available() > 0);
 
-            // stream is empty
             assertEquals(0, is.read());
             assertEquals(1, is.read());
             assertEquals(2, is.read());
             assertEquals(3, is.read());
 
             // stream is empty
+            assertEquals(-1, is.read());
+        }
+    }
+
+    @Test
+    @SneakyThrows
+    @DisplayName("Write data to file through buffer and then read it from there")
+    void testWriteReadDataToFileUsingBuffers() {
+        try (OutputStream os = new BufferedOutputStream(new FileOutputStream(file));
+             InputStream is = new BufferedInputStream(new FileInputStream(file))) {
+
+            assertTrue(file.exists());
+
+            byte[] byteArray = {3, 2, 1, 0};
+            for (int i = 0; i < byteArray.length; i++) {
+                os.write(byteArray[i]);
+            }
+
+            os.flush();
+
+            assertTrue(is.available() > 0);
+
+            assertEquals(3, is.read());
+            assertEquals(2, is.read());
+            assertEquals(1, is.read());
+            assertEquals(0, is.read());
+
+            // stream is empty
+            assertEquals(-1, is.read());
             assertEquals(-1, is.read());
         }
     }

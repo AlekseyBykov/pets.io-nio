@@ -24,14 +24,14 @@ class ByteIOTestBase {
 
     @BeforeEach
     @SneakyThrows
-    void createTempFile() {
+    private void createTempFile() {
         filePath = Paths.get("src", "test", "resources", "temp");
         file = filePath.resolve("tmp").toFile();
     }
 
     @AfterEach
     @SneakyThrows
-    void clearTempDirectory() {
+    private void clearTempDirectory() {
         FileUtils.cleanDirectory(filePath.toAbsolutePath().toFile());
     }
 }
