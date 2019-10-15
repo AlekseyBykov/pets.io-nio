@@ -20,6 +20,7 @@ public class IOTestBase {
 
     protected File sourceFile;
     protected File destinationFile;
+    protected File fixtureFile;
 
     private Path filePath;
 
@@ -29,6 +30,8 @@ public class IOTestBase {
         filePath = Paths.get("src", "test", "resources", "temp");
         sourceFile = filePath.resolve("source").toFile();
         destinationFile = filePath.resolve("destination").toFile();
+
+        fixtureFile = filePath.getParent().resolve("fixture").resolve("fixture").toFile();
     }
 
     @AfterEach
