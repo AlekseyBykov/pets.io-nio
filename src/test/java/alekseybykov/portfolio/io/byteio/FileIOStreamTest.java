@@ -3,6 +3,7 @@
 //
 package alekseybykov.portfolio.io.byteio;
 
+import alekseybykov.portfolio.io.IOTestBase;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,16 +18,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @version 2019-10-15
  */
 @DisplayName("Tests for some concepts of FileInputStream and FileOutputStream")
-class FileIOStreamTest extends ByteIOTestBase {
+class FileIOStreamTest extends IOTestBase {
 
     @Test
     @SneakyThrows
     @DisplayName("Write data to file and then read it from there")
     void testWriteReadDataToFileWithoutBuffers() {
-        try (OutputStream os = new FileOutputStream(file);
-             InputStream is = new FileInputStream(file)) {
+        try (OutputStream os = new FileOutputStream(destinationFile);
+             InputStream is = new FileInputStream(destinationFile)) {
 
-            assertTrue(file.exists());
+            assertTrue(destinationFile.exists());
 
             byte[] byteArray = {0, 1, 2, 3};
             for (byte abyte : byteArray) {
@@ -50,10 +51,10 @@ class FileIOStreamTest extends ByteIOTestBase {
     @SneakyThrows
     @DisplayName("Write data to file through buffer and then read it from there")
     void testWriteReadDataToFileUsingBuffers() {
-        try (OutputStream os = new BufferedOutputStream(new FileOutputStream(file));
-             InputStream is = new BufferedInputStream(new FileInputStream(file))) {
+        try (OutputStream os = new BufferedOutputStream(new FileOutputStream(destinationFile));
+             InputStream is = new BufferedInputStream(new FileInputStream(destinationFile))) {
 
-            assertTrue(file.exists());
+            assertTrue(destinationFile.exists());
 
             byte[] byteArray = {3, 2, 1, 0};
             for (int i = 0; i < byteArray.length; i++) {

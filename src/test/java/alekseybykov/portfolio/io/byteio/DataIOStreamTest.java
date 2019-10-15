@@ -3,6 +3,7 @@
 //
 package alekseybykov.portfolio.io.byteio;
 
+import alekseybykov.portfolio.io.IOTestBase;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,14 +17,14 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 2019-10-14
  */
 @DisplayName("Tests for some concepts of DataInputStream and DataOutputStream")
-class DataIOStreamTest extends ByteIOTestBase {
+class DataIOStreamTest extends IOTestBase {
 
     @Test
     @SneakyThrows
     @DisplayName("Write data to file through buffer")
     void testWriteDataToFileThroughBuffer() {
         try (DataOutputStream out = new DataOutputStream(
-                new BufferedOutputStream(new FileOutputStream(file)))) {
+                new BufferedOutputStream(new FileOutputStream(destinationFile)))) {
 
             out.writeInt(1);
             out.writeShort(2);
@@ -32,8 +33,8 @@ class DataIOStreamTest extends ByteIOTestBase {
             out.writeUTF("some utf string");
             out.flush();
 
-            assertTrue(file.exists());
-            assertTrue(file.length() > 0);
+            assertTrue(destinationFile.exists());
+            assertTrue(destinationFile.length() > 0);
         }
     }
 
@@ -42,13 +43,13 @@ class DataIOStreamTest extends ByteIOTestBase {
     @DisplayName("Write data to buffer without flushing")
     void testWriteDataToBufferWithoutFlushing() {
         try (DataOutputStream out = new DataOutputStream(
-                new BufferedOutputStream(new FileOutputStream(file)))) {
+                new BufferedOutputStream(new FileOutputStream(destinationFile)))) {
 
             out.writeInt(1);
             out.writeLong(3L);
 
-            assertTrue(file.exists());
-            assertTrue(file.length() == 0);
+            assertTrue(destinationFile.exists());
+            assertTrue(destinationFile.length() == 0);
         }
     }
 
@@ -57,9 +58,9 @@ class DataIOStreamTest extends ByteIOTestBase {
     @DisplayName("Write data to file through buffer and then read it from there by similar way")
     void testWriteReadFileUsingBuffer() {
         try (DataOutputStream out = new DataOutputStream(
-                new BufferedOutputStream(new FileOutputStream(file)));
+                new BufferedOutputStream(new FileOutputStream(destinationFile)));
              DataInputStream in = new DataInputStream
-                (new BufferedInputStream(new FileInputStream(file)))) {
+                (new BufferedInputStream(new FileInputStream(destinationFile)))) {
 
             out.writeInt(-1);
             out.writeBoolean(false);
@@ -69,8 +70,8 @@ class DataIOStreamTest extends ByteIOTestBase {
             out.writeUTF("some utf string");
             out.flush();
 
-            assertTrue(file.exists());
-            assertTrue(file.length() > 0);
+            assertTrue(destinationFile.exists());
+            assertTrue(destinationFile.length() > 0);
 
             assertEquals(-1, in.readInt());
             assertFalse(in.readBoolean());

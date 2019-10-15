@@ -1,7 +1,7 @@
 //
 // Feel free to use these solutions in your work.
 //
-package alekseybykov.portfolio.io.byteio;
+package alekseybykov.portfolio.io;
 
 import lombok.SneakyThrows;
 import org.apache.commons.io.FileUtils;
@@ -16,9 +16,10 @@ import java.nio.file.Paths;
  * @author  aleksey.n.bykov@gmail.com
  * @version 2019-10-15
  */
-class ByteIOTestBase {
+public class IOTestBase {
 
-    File file;
+    protected File sourceFile;
+    protected File destinationFile;
 
     private Path filePath;
 
@@ -26,7 +27,8 @@ class ByteIOTestBase {
     @SneakyThrows
     private void createTempFile() {
         filePath = Paths.get("src", "test", "resources", "temp");
-        file = filePath.resolve("tmp").toFile();
+        sourceFile = filePath.resolve("source").toFile();
+        destinationFile = filePath.resolve("destination").toFile();
     }
 
     @AfterEach
