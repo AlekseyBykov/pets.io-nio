@@ -4,15 +4,10 @@
 package alekseybykov.portfolio.io.byteio;
 
 import lombok.SneakyThrows;
-import org.apache.commons.io.FileUtils;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,23 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 2019-10-14
  */
 @DisplayName("Tests for some concepts of DataInputStream and DataOutputStream")
-class DataIOStreamTest {
-
-    private static Path filePath;
-    private static File file;
-
-    @BeforeAll
-    @SneakyThrows
-    static void createTempFile() {
-        filePath = Paths.get("src", "test", "resources", "temp");
-        file = filePath.resolve("tmp").toFile();
-    }
-
-    @AfterAll
-    @SneakyThrows
-    static void clearTempDirectory() {
-        FileUtils.cleanDirectory(filePath.toAbsolutePath().toFile());
-    }
+class DataIOStreamTest extends ByteIOTestBase {
 
     @Test
     @SneakyThrows
@@ -53,6 +32,7 @@ class DataIOStreamTest {
             out.writeUTF("some utf string");
             out.flush();
 
+            assertTrue(file.exists());
             assertTrue(file.length() > 0);
         }
     }
@@ -67,14 +47,15 @@ class DataIOStreamTest {
             out.writeInt(1);
             out.writeLong(3L);
 
+            assertTrue(file.exists());
             assertTrue(file.length() == 0);
         }
     }
 
     @Test
     @SneakyThrows
-    @DisplayName("Write data to file and then read it from there")
-    void testWriteReadDataUsingFile() {
+    @DisplayName("Write data to file through buffer and then read it from there by similar way")
+    void testWriteReadFileUsingBuffer() {
         try (DataOutputStream out = new DataOutputStream(
                 new BufferedOutputStream(new FileOutputStream(file)));
              DataInputStream in = new DataInputStream
@@ -88,6 +69,7 @@ class DataIOStreamTest {
             out.writeUTF("some utf string");
             out.flush();
 
+            assertTrue(file.exists());
             assertTrue(file.length() > 0);
 
             assertEquals(-1, in.readInt());
