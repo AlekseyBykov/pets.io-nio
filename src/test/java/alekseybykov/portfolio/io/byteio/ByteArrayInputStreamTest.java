@@ -1,6 +1,3 @@
-//
-// Feel free to use these solutions in your work.
-//
 package alekseybykov.portfolio.io.byteio;
 
 import org.junit.jupiter.api.DisplayName;
@@ -10,10 +7,6 @@ import java.io.ByteArrayInputStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * @author  aleksey.n.bykov@gmail.com
- * @version 2019-10-14
- */
 @DisplayName("Tests for some concepts of ByteArrayInputStream")
 class ByteArrayInputStreamTest {
 

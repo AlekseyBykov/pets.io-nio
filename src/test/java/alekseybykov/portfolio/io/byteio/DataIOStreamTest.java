@@ -1,6 +1,3 @@
-//
-// Feel free to use these solutions in your work.
-//
 package alekseybykov.portfolio.io.byteio;
 
 import alekseybykov.portfolio.io.IOTestBase;
@@ -12,10 +9,6 @@ import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * @author  aleksey.n.bykov@gmail.com
- * @version 2019-10-14
- */
 @DisplayName("Tests for some concepts of DataInputStream and DataOutputStream")
 class DataIOStreamTest extends IOTestBase {
 

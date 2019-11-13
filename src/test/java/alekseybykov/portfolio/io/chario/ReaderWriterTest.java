@@ -1,6 +1,3 @@
-//
-// Feel free to use these solutions in your work.
-//
 package alekseybykov.portfolio.io.chario;
 
 import alekseybykov.portfolio.io.IOTestBase;
@@ -13,10 +10,6 @@ import java.io.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * @author  aleksey.n.bykov@gmail.com
- * @version 2019-10-15
- */
 @DisplayName("Tests for some concepts of InputStreamReader and InputStreamWriter")
 class ReaderWriterTest extends IOTestBase {
 

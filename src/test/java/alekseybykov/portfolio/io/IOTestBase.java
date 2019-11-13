@@ -1,6 +1,3 @@
-//
-// Feel free to use these solutions in your work.
-//
 package alekseybykov.portfolio.io;
 
 import lombok.SneakyThrows;
@@ -12,10 +9,6 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-/**
- * @author  aleksey.n.bykov@gmail.com
- * @version 2019-10-15
- */
 public class IOTestBase {
 
     protected File sourceFile;

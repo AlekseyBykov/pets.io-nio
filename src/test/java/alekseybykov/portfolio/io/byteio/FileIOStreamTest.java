@@ -1,6 +1,3 @@
-//
-// Feel free to use these solutions in your work.
-//
 package alekseybykov.portfolio.io.byteio;
 
 import alekseybykov.portfolio.io.IOTestBase;
@@ -13,10 +10,6 @@ import java.io.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * @author  aleksey.n.bykov@gmail.com
- * @version 2019-10-15
- */
 @DisplayName("Tests for some concepts of FileInputStream and FileOutputStream")
 class FileIOStreamTest extends IOTestBase {
 
