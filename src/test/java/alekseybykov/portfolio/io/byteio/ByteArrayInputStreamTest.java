@@ -7,6 +7,10 @@ import java.io.ByteArrayInputStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * @author Aleksey Bykov
+ * @since 14.10.2019
+ */
 @DisplayName("Tests for some concepts of ByteArrayInputStream")
 class ByteArrayInputStreamTest {
 

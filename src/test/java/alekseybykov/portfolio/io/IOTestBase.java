@@ -9,6 +9,10 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * @author Aleksey Bykov
+ * @since 15.10.2019
+ */
 public class IOTestBase {
 
     protected File sourceFile;

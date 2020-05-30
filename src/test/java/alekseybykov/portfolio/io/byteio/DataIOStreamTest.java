@@ -9,6 +9,10 @@ import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author Aleksey Bykov
+ * @since 14.10.2019
+ */
 @DisplayName("Tests for some concepts of DataInputStream and DataOutputStream")
 class DataIOStreamTest extends IOTestBase {
 

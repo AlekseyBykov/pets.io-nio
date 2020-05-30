@@ -10,6 +10,10 @@ import java.io.RandomAccessFile;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+/**
+ * @author Aleksey Bykov
+ * @since 15.10.2019
+ */
 @DisplayName("Tests for some concepts of RandomAccessFile")
 class RandomAccessFileTest extends IOTestBase {
 

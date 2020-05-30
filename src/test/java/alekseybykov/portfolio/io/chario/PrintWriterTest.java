@@ -13,6 +13,10 @@ import java.io.PrintWriter;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * @author Aleksey Bykov
+ * @since 15.10.2019
+ */
 @DisplayName("Tests for some concepts of PrintWriter")
 class PrintWriterTest extends IOTestBase {
 
